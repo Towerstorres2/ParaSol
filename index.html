@@ -107,24 +107,49 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
 
+    
     .pages {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #fff7eb;
-      border-radius: 8px;
-      padding: 25px 25px 25px 30px;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.07);
-      z-index: 1;
-      overflow-y: auto;
-      color: #5b3a29;
-      font-size: 1em;
-      line-height: 1.7;
-      user-select: text;
-      font-family: 'Georgia', serif;
-    }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff7eb;
+  border-radius: 8px;
+  padding: 25px 25px 25px 30px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.07);
+  z-index: 1;
+  overflow-y: auto;
+  color: #5b3a29;
+  font-size: 1em;
+  line-height: 1.7;
+  user-select: text;
+  font-family: 'Georgia', serif;
+  scrollbar-width: thin;
+  scrollbar-color: pink transparent;
+}
+
+.pages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pages::-webkit-scrollbar-track {
+  background: transparent;
+  margin:5px;
+}
+
+.pages::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+  to top,
+  #d9a066, 
+  #c17939,  
+  #a65a2a,   
+  #874c2f, 
+  #5b3a29 
+);
+  border-radius: 5px;
+}
+    
 
     .pages h2 {
       color: #9c6133;
