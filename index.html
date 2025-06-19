@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background: radial-gradient(circle at center, #f9e4d4 0%, #c97b63 80%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      color: #5b3a29;
+    }
+
+    .hint {
+      margin-top: 30px;
+      font-size: 1.3em;
+      color: #754c24cc;
+      font-style: italic;
+      transition: opacity 0.6s ease;
+      user-select: none;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.6);
+    }
+
+    .book-wrapper {
+      position: relative;
+      width: 280px;
+      height: 380px;
+      perspective: 1300px;
+      cursor: pointer;
+      filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
+      border-radius: 8px;
+    }
+
+    .cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform-origin: left;
+      transition: transform 1.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      z-index: 2;
+      border-radius: 8px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #7b4f24 0%, #b77a42 100%);
+      background-size: 400% 400%;
+      animation: subtleTexture 15s ease infinite;
+    }
+
+    @keyframes subtleTexture {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .cover-side {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      padding: 25px 20px;
+      box-sizing: border-box;
+      text-align: center;
+      flex-direction: column;
+      color: #fff8e1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      font-weight: 600;
+      font-size: 1.7em;
+      font-family: 'Georgia', serif;
+      user-select: none;
+      letter-spacing: 0.04em;
+    }
+
+    .cover-front span {
+      font-size: 3.6em;
+      color: #e74c3c;
+      margin-top: 15px;
+      filter: drop-shadow(0 0 6px #ff6f61cc);
+    }
+
+    .cover-back {
+      background-color: #5a2d0a;
+      transform: rotateY(180deg);
+      box-shadow: inset 0 0 20px #3a1e00;
+    }
+
+    .book-wrapper.open .cover {
+      transform: rotateY(-120deg);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .pages {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff7eb;
+      border-radius: 8px;
+      padding: 25px 25px 25px 30px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.07);
+      z-index: 1;
+      overflow-y: auto;
+      color: #5b3a29;
+      font-size: 1em;
+      line-height: 1.7;
+      user-select: text;
+      font-family: 'Georgia', serif;
+    }
+
+    .pages h2 {
+      color: #9c6133;
+      font-size: 1.6em;
+      margin-bottom: 12px;
+      font-style: italic;
+      font-weight: 700;
+      text-shadow: 1px 1px 2px #fff4e1;
+      letter-spacing: 0.02em;
+    }
+
+    .pages p {
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .pages img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 7px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .pages img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .book-wrapper.open ~ .hint {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-wrapper" id="book">
+    <div class="cover">
+      <div class="cover-side cover-front">
+        <p>Para Sol</p>
+        <span>&hearts;</span>
+      </div>
+      <div class="cover-side cover-back"></div>
+    </div>
+    <div class="pages">
+      <h2>você ê o meu sonho</h2>
+      <p>desde que te conheci, cada momento ao seu lado coloriu meus dias, você chegou exatamento no momento certo da minha vida e me faz uma pessoa melhor.</p>
+      <h2>quero Compartilhar</h2>
+      <p>quero compartilhar sonhos, risadas, planos e dias simples que se tornam especiais por você existir.</p> 
+      <h2>aceita namorar comigo?</h2>
+      <p>me deixa ter a honra de dividir uma aliança com você, construir e viver historias ao seu lado e me sentir honrado de te ter do meu lado?</p>
+      </div>
+  </div>
+
+  <div class="hint">Clique na capa para abrir!</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const book = document.getElementById('book');
+      book.addEventListener('click', function () {
+        book.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
